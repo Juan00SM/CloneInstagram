@@ -1,5 +1,5 @@
 {
-  "name": "CloneInstagram",
+  "name": "cloneinstagram",
   "version": "0.0.1",
   "author": "Ionic Framework",
   "homepage": "https://ionicframework.com/",
@@ -15,17 +15,31 @@
   "dependencies": {
     "@angular/common": "~8.2.14",
     "@angular/core": "~8.2.14",
+    "@angular/fire": "^5.4.2",
     "@angular/forms": "~8.2.14",
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@ionic-native/camera": "^5.22.0",
     "@ionic-native/core": "^5.0.0",
+    "@ionic-native/facebook": "^5.22.0",
+    "@ionic-native/google-plus": "^5.22.0",
     "@ionic-native/splash-screen": "^5.0.0",
     "@ionic-native/status-bar": "^5.0.0",
+    "@ionic-native/vibration": "^5.22.0",
     "@ionic/angular": "^5.0.0",
+    "cordova-android": "^8.1.0",
+    "cordova-browser": "6.0.0",
+    "cordova-plugin-camera": "^4.1.0",
+    "cordova-plugin-facebook4": "^6.3.0",
+    "cordova-plugin-googleplus": "^8.4.0",
+    "cordova-plugin-vibration": "^3.1.1",
     "core-js": "^2.5.4",
+    "firebase": "^7.9.3",
+    "firebase-admin": "^8.9.2",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
+    "twitter-connect-plugin": "^0.6.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -39,6 +53,12 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "cordova-plugin-device": "^2.0.2",
+    "cordova-plugin-ionic-keyboard": "^2.2.0",
+    "cordova-plugin-ionic-webview": "^4.1.3",
+    "cordova-plugin-splashscreen": "^5.0.2",
+    "cordova-plugin-statusbar": "^2.4.2",
+    "cordova-plugin-whitelist": "^1.3.3",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -51,5 +71,36 @@
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-statusbar": {},
+      "cordova-plugin-device": {},
+      "cordova-plugin-splashscreen": {},
+      "cordova-plugin-ionic-webview": {
+        "ANDROID_SUPPORT_ANNOTATIONS_VERSION": "27.+"
+      },
+      "cordova-plugin-ionic-keyboard": {},
+      "cordova-plugin-googleplus": {
+        "REVERSED_CLIENT_ID": "com.googleusercontent.apps.1036696967861-4p4lbv65v609d3cdj3lpsv4da7hal7eb",
+        "WEB_APPLICATION_CLIENT_ID": "1036696967861-4p4lbv65v609d3cdj3lpsv4da7hal7eb.apps.googleusercontent.com",
+        "PLAY_SERVICES_VERSION": "15.0.1"
+      },
+      "cordova-plugin-facebook4": {
+        "APP_ID": "2550844431859390",
+        "APP_NAME": "InstClone",
+        "FACEBOOK_HYBRID_APP_EVENTS": "false",
+        "FACEBOOK_ANDROID_SDK_VERSION": "5.13.0"
+      },
+      "cordova-plugin-vibration": {},
+      "cordova-plugin-camera": {
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      }
+    },
+    "platforms": [
+      "android",
+      "browser"
+    ]
+  }
 }

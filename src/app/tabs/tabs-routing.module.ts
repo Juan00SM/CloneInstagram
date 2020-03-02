@@ -4,11 +4,11 @@ import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
   {
-    path: 'tabs',
+    path: 'tab',
     component: TabsPage,
     children: [
       {
-        path: 'tab1',
+        path: 't1',
         children: [
           {
             path: '',
@@ -18,7 +18,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab2',
+        path: 't2',
         children: [
           {
             path: '',
@@ -28,7 +28,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'tab3',
+        path: 't3',
         children: [
           {
             path: '',
@@ -38,17 +38,38 @@ const routes: Routes = [
         ]
       },
       {
+        path: 't4',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../tab4/tab4.module').then(m => m.Tab4PageModule)
+          }
+        ]
+      },
+      {
+        path: 't5',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../tab5/tab5.module').then(m => m.Tab5PageModule)
+          }
+        ]
+      },
+      {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: 'tabs/tab/t1',
         pathMatch: 'full'
       }
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: 'tabs/tab/t1',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({

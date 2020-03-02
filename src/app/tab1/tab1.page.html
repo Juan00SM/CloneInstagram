@@ -1,17 +1,112 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-row>
+      <ion-col size="1">
+        <ion-icon name="camera-outline"></ion-icon>
+      </ion-col>
+      <ion-col size="9.5" class="ion-align-self-center">
+        <ion-title>Instagram</ion-title>
+      </ion-col>
+      <ion-col size="1.5">
+        <ion-icon name="paper-plane-outline"></ion-icon>
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" [pullingText]="textPullingRefresh" refreshingSpinner="bubbles"
+      [refreshingText]="textRefreshingRefresh">
+    </ion-refresher-content>
+  </ion-refresher>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-row>
+    <ion-col>
+      <ion-slides pager="false" [options]="slideOptsStory">
+        <ion-slide *ngFor="let story of stories;let i=index">
+          <ion-avatar>
+            <img src="../../assets/icon/favicon.png">
+          </ion-avatar>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+
+      <ion-list>
+        <ion-card *ngFor="let post of posts;let i=index">
+          <!-- Cabecera -->
+          <ion-card-header style="padding: 5px;">
+            <ion-row>
+              <ion-col size="2">
+                <ion-avatar class="avatarCard"><img [src]="post.srcPhotoUser?post.srcPhotoUser:'../../assets/icon/default.png'"></ion-avatar>
+              </ion-col>
+              <ion-col size="9" class="ion-align-self-center">
+                <ion-card-subtitle>{{post.nameUser}}</ion-card-subtitle>
+              </ion-col>
+              <ion-col size="1" class="ion-align-self-center">
+                <ion-icon name="ellipsis-vertical"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-card-header>
+          <!-- Imagenes -->
+          <ion-slides pager="true" [options]="slideOptsPost">
+            <ion-slide>
+              <img [src]="post.srcPhotoPost?post.srcPhotoPost:'../../assets/icon/default.png'" alt="ion">
+            </ion-slide>
+          </ion-slides>
+          <div style="padding: 4px;">
+            <ion-icon class="iconPost" name="heart-outline"></ion-icon>
+            <ion-icon class="iconPost" name="chatbubble-outline"></ion-icon>
+            <ion-icon class="iconPost" name="paper-plane-outline"></ion-icon>
+            <ion-icon class="iconPost" name="bookmark-outline" style="float: right; margin-right: 10px;"></ion-icon>
+          </div>
+          <!-- Cuerpo -->
+          <ion-card-content>
+            <p style="margin-bottom: 10px;">
+              <ion-text><strong>{{post.nameUser}} :</strong> {{post.description?post.description:'No hay descripción'}}
+              </ion-text>
+            </p>
+            <p>
+              <ion-text color="medium">
+                Ver los {{post.uidComments?post.uidComments.lenght:'0'}} comentarios
+              </ion-text>
+            </p>
+            <ion-row>
+              <ion-col size="11">
+                <ion-text><strong>{{post.featuredComment?post.featuredComment.nameUser:'NombreComentarioDestacado'}} :</strong> 
+                  {{post.featuredComment?post.featuredComment.description:'Descripcion del comentario de ejemplo por no haber ninguno'}}
+                </ion-text>
+              </ion-col>
+              <ion-col size="1">
+                <ion-icon style="margin-top: 6px;" name="heart-outline"></ion-icon>
+              </ion-col>
+            </ion-row>
+
+          </ion-card-content>
+          <ion-footer>
+            <ion-row style="padding: 3px 16px 3px 16px;">
+              <ion-col size="1.5" class="ion-align-self-center">
+                <ion-avatar class="avatarComment"><img [src]="userProfileImage?userProfileImage:'../../assets/icon/favicon.png'"></ion-avatar>
+              </ion-col>
+              <ion-col size="9" class="ion-align-self-center">
+                <ion-input [(ngModel)]="valueNewComment" placeholder="Añade un comentario..."></ion-input>
+              </ion-col>
+              <ion-col size="1.5" class="ion-align-self-center">
+                <ion-icon name="send-outline"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-footer>
+        </ion-card>
+      </ion-list>
+
+      <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" [loadingText]="textLoadingInfiniteScroll">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+
+    </ion-col>
+  </ion-row>
 </ion-content>

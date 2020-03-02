@@ -1,3 +1,22 @@
-ion-content ion-toolbar {
+ion-toolbar ion-icon{
+  font-size: 25px;
+  margin: 6px;
+}
+ion-content {
   --background: translucent;
+}
+.avatarCard{
+  width: 38px;
+  height: 38px;
+}
+.avatarComment{
+  width: 26px;
+  height: 26px;
+}
+.iconPost{
+  font-size: 25px;
+  margin: 4px 0 4px 2px;
+}
+ion-text{
+  font-size: smaller;
 }

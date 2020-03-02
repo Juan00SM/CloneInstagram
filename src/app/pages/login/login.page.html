@@ -1,0 +1,80 @@
+<ion-content class="ion-padding">
+  
+  <div padding class="animated fadeInDown auth-content">
+    <div class="logo"></div>
+  </div>
+
+  <form class="ion-margin" [formGroup]="formLogin">
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="mail-outline" item-start></ion-icon> Email
+      </ion-label>
+      <ion-input clearInput="true" inputmode="email" name="email" type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formLogin.get('email').errors && formLogin.get('email').dirty">
+      <p *ngIf="formLogin.get('email').hasError('required')" class="error">
+        El Email es requerido.
+      </p>
+      <p *ngIf="formLogin.get('email').hasError('email')" class="error">
+        El Email tiene que ser valido.
+      </p>
+    </ion-item>
+
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="lock-closed-outline"></ion-icon> Contraseña
+      </ion-label>
+      <ion-input name="password" [type]="getTypePassword()" formControlName="password" color="medium">
+      </ion-input>
+      <ion-icon style="margin-top: 25px;" name="eye" slot="end" (click)="toggleTextPassword()"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="formLogin.get('password').errors && formLogin.get('email').dirty">
+      <p *ngIf="formLogin.get('password').hasError('required')" class="error">
+        La Contraseña es requerida.
+      </p>
+    </ion-item>
+
+    <ion-item>
+      <ion-checkbox color="secondary" name="remember" formControlName="remember" slot="start"></ion-checkbox>
+      <ion-label>Recordarme</ion-label>
+    </ion-item>
+
+    <ion-button class="ion-margin" icon-left size="medium" expand="full" shape="round" color="dark"
+      (click)="loginWithEmailAndPassword()" [disabled]="!formLogin.valid" tappable>
+      <ion-icon name="log-in"></ion-icon>
+      Iniciar Sesión
+    </ion-button>
+    <ion-item text-center>
+      <ion-label (click)="recoverPassword()">¿Contraseña olvidada?</ion-label>
+    </ion-item>
+  </form>
+  
+  <ion-row style="margin-top: 25px;">
+    <ion-item>
+      <ion-label><strong>O Inicia Sesión con:</strong></ion-label>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-button shape="round" expand="full" color="secondary" (click)="loginWithFacebook()">
+        <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button shape="round" expand="full" color="secondary" (click)="loginWithTwitter()">
+        <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button shape="round" expand="full" color="secondary" (click)="loginWithGoogle()">
+        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 35px;">
+    <ion-item>
+      <ion-label (click)="goRegister()">¿Eres Nuevo?: <strong><em>Regístrate</em></strong></ion-label>
+    </ion-item>
+  </ion-row>
+
+</ion-content>

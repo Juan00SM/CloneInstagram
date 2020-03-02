@@ -1,5 +1,7 @@
 {
   "name": "CloneInstagram",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

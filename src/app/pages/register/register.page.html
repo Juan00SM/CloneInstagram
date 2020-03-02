@@ -1,0 +1,84 @@
+<ion-content class="ion-padding">
+  
+  <div padding class="animated fadeInDown auth-content">
+    <div class="logo"></div>
+  </div>
+
+  <form class="ion-margin" [formGroup]="formRegister">
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="person-outline" item-start></ion-icon> Nombre Completo
+      </ion-label>
+      <ion-input clearInput="true" name="name" type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formRegister.get('name').errors && formRegister.get('name').dirty">
+      <p *ngIf="formRegister.get('name').hasError('required')" class="error">
+        El Nombre es requerido.
+      </p>
+    </ion-item>
+
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="mail-outline" item-start></ion-icon> Email
+      </ion-label>
+      <ion-input clearInput="true" inputmode="email" name="email" type="email" formControlName="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="formRegister.get('email').errors && formRegister.get('email').dirty">
+      <p *ngIf="formRegister.get('email').hasError('required')" class="error">
+        El Email es requerido.
+      </p>
+      <p *ngIf="formRegister.get('email').hasError('email')" class="error">
+        El Email tiene que ser valido.
+      </p>
+    </ion-item>
+
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        <ion-icon name="lock-closed-outline"></ion-icon> Contraseña
+      </ion-label>
+      <ion-input name="password" [type]="getTypePassword()" formControlName="password" color="medium">
+      </ion-input>
+      <ion-icon style="margin-top: 25px;" name="eye" slot="end" (click)="toggleTextPassword()"></ion-icon>
+    </ion-item>
+    <ion-item *ngIf="formRegister.get('password').errors && formRegister.get('email').dirty">
+      <p *ngIf="formRegister.get('password').hasError('required')" class="error">
+        La Contraseña es requerida.
+      </p>
+    </ion-item>
+
+    <ion-button class="ion-margin" icon-left size="medium" expand="full" shape="round" color="dark"
+      (click)="registerWithEmailAndPassword()" [disabled]="!formRegister.valid" tappable>
+      <ion-icon name="log-in"></ion-icon>
+      Registrarse
+    </ion-button>
+  </form>
+  
+  <ion-row style="margin-top: 25px;">
+    <ion-item>
+      <ion-label><strong>O Registrate con:</strong></ion-label>
+    </ion-item>
+  </ion-row>
+  <ion-row>
+    <ion-col size="4">
+      <ion-button shape="round" expand="full" color="secondary" (click)="loginWithFacebook()">
+        <ion-icon slot="icon-only" name="logo-facebook"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button shape="round" expand="full" color="secondary" (click)="loginWithTwitter()">
+        <ion-icon slot="icon-only" name="logo-twitter"></ion-icon>
+      </ion-button>
+    </ion-col>
+    <ion-col size="4">
+      <ion-button shape="round" expand="full" color="secondary" (click)="loginWithGoogle()">
+        <ion-icon slot="icon-only" name="logo-google"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-top: 35px;">
+    <ion-item>
+      <ion-label (click)="goLogin()"><strong>¡Ya tengo una cuenta!</strong></ion-label>
+    </ion-item>
+  </ion-row>
+
+</ion-content>

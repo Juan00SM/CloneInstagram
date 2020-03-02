@@ -7,11 +7,9 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <img [src]="img?img:'../../assets/icon/default.png'" />
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-input [(ngModel)]="valueDescriptionPost" placeholder="Añade una descripción..."></ion-input>
+
+  <ion-button class="ion-margin" style="margin-top: 100px;" expand="full" (click)="uploadPost()" shape="round">Subir Nuevo Post</ion-button>
 </ion-content>

@@ -1,0 +1,23 @@
+ion-content {
+    --background: linear-gradient(10deg, #000, #aa0e78);
+  }
+  ion-item {
+    --ion-item-background: transparent;
+    --color: var(--ion-color-light);
+  }
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin: 20px auto 8px;
+    border-radius: 10%;
+    background: url("../../../assets/icon/favicon.png") no-repeat;
+    background-size: 100%;
+  }
+  .fw700 {
+    font-weight: 900 !important;
+    margin: 20px auto 8px;
+  }
+  .auth-content {
+      margin: 0 5%;
+  }
+  
